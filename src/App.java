@@ -23,11 +23,7 @@ public class App extends javax.swing.JFrame {
     /** Creates new form App */
     public App() {
         initComponents();
-        
-        // stop running when JFrame is closed
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        
-        // open on center of screen
         setLocationRelativeTo(null);
     }
 
@@ -43,7 +39,9 @@ public class App extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         menu_Edit = new javax.swing.JMenu();
         mItem_Timer = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        mItem_Timer1 = new javax.swing.JMenuItem();
+        mItem_Timer2 = new javax.swing.JMenuItem();
+        mItem_Timer3 = new javax.swing.JMenuItem();
         mItem_Image = new javax.swing.JMenuItem();
         menu_About = new javax.swing.JMenu();
         mItem_Version = new javax.swing.JMenuItem();
@@ -51,18 +49,19 @@ public class App extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Screensaver");
         setResizable(false);
-        addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                formMouseClicked(evt);
-            }
-        });
 
         menu_Edit.setText("Edit");
 
         mItem_Timer.setText("Edit timer");
 
-        jMenuItem1.setText("jMenuItem1");
-        mItem_Timer.add(jMenuItem1);
+        mItem_Timer1.setText("Set timer to 5 seconds");
+        mItem_Timer.add(mItem_Timer1);
+
+        mItem_Timer2.setText("Set timer to 10 seconds");
+        mItem_Timer.add(mItem_Timer2);
+
+        mItem_Timer3.setText("Set timer to 15 seconds");
+        mItem_Timer.add(mItem_Timer3);
 
         menu_Edit.add(mItem_Timer);
 
@@ -79,6 +78,11 @@ public class App extends javax.swing.JFrame {
         menu_About.setText("About");
 
         mItem_Version.setText("App version");
+        mItem_Version.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mItem_VersionActionPerformed(evt);
+            }
+        });
         menu_About.add(mItem_Version);
 
         jMenuBar1.add(menu_About);
@@ -134,10 +138,15 @@ public class App extends javax.swing.JFrame {
         
     }//GEN-LAST:event_mItem_ImageActionPerformed
 
-    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_formMouseClicked
+    // about menu
+    private void mItem_VersionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItem_VersionActionPerformed
+        
+        JOptionPane.showMessageDialog(null, "Screensaver v1049304.01");
+        
+    }//GEN-LAST:event_mItem_VersionActionPerformed
 
+    // check mouse
+    
     /**
      * @param args the command line arguments
      */
@@ -175,9 +184,11 @@ public class App extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem mItem_Image;
     private javax.swing.JMenu mItem_Timer;
+    private javax.swing.JMenuItem mItem_Timer1;
+    private javax.swing.JMenuItem mItem_Timer2;
+    private javax.swing.JMenuItem mItem_Timer3;
     private javax.swing.JMenuItem mItem_Version;
     private javax.swing.JMenu menu_About;
     private javax.swing.JMenu menu_Edit;
