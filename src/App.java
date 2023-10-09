@@ -49,7 +49,13 @@ public class App extends javax.swing.JFrame {
         mItem_Version = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Screensaver");
         setResizable(false);
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
 
         menu_Edit.setText("Edit");
 
@@ -117,8 +123,8 @@ public class App extends javax.swing.JFrame {
                 int y = (originalImage.getHeight() - height) / 2;
                 BufferedImage croppedImage = originalImage.getSubimage(x, y, width, height);
                 ImageIcon icon = new ImageIcon(croppedImage);
-                JLabel label = new JLabel(icon);
-                setContentPane(label);
+                JLabel background = new JLabel(icon);
+                setContentPane(background);
                 revalidate();
                 repaint();
             } catch (IOException ex) {
@@ -127,6 +133,10 @@ public class App extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_mItem_ImageActionPerformed
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formMouseClicked
 
     /**
      * @param args the command line arguments
