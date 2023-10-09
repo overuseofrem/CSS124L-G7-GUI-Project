@@ -1,4 +1,6 @@
 
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -18,7 +20,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  *
  * @author ASUS
  */
-public class App extends javax.swing.JFrame {
+public class App extends javax.swing.JFrame implements MouseMotionListener {
 
     /** Creates new form App */
     public App() {
@@ -193,5 +195,17 @@ public class App extends javax.swing.JFrame {
     private javax.swing.JMenu menu_About;
     private javax.swing.JMenu menu_Edit;
     // End of variables declaration//GEN-END:variables
+
+    // mouse events
+    @Override
+    public void mouseDragged(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    // reset timer if mouse is moved!
+    @Override
+    public void mouseMoved(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 }
