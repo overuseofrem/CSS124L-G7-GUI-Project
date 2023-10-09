@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
+import javax.swing.Timer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -284,11 +285,14 @@ public class App extends javax.swing.JFrame implements MouseMotionListener {
     
     private void update() {
         if (stopper == 1 & success == 1) {
+            //complex restarter
             timer.cancel();
             timer.purge();
             bg.setVisible(false);
             stopper = 0;
             TimerStart();
+            //simpler restarter
+            timer.restart();
         }
     }
     
