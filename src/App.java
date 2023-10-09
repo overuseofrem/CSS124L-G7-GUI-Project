@@ -4,6 +4,8 @@ import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -22,6 +24,13 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class App extends javax.swing.JFrame implements MouseMotionListener {
 
+    JLabel bg;
+    int counter;
+    int TimeValue = 5000;
+    Timer timer = new Timer();
+    int success = 0;
+    int stopper = 0;
+    
     /** Creates new form App */
     public App() {
         initComponents();
@@ -51,18 +60,63 @@ public class App extends javax.swing.JFrame implements MouseMotionListener {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Screensaver");
         setResizable(false);
+        addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                formMouseDragged(evt);
+            }
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                formMouseMoved(evt);
+            }
+        });
+        addMouseWheelListener(new java.awt.event.MouseWheelListener() {
+            public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
+                formMouseWheelMoved(evt);
+            }
+        });
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                formMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                formMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                formMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                formMouseReleased(evt);
+            }
+        });
 
         menu_Edit.setText("Edit");
 
         mItem_Timer.setText("Edit timer");
 
         mItem_Timer1.setText("Set timer to 5 seconds");
+        mItem_Timer1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mItem_Timer1ActionPerformed(evt);
+            }
+        });
         mItem_Timer.add(mItem_Timer1);
 
         mItem_Timer2.setText("Set timer to 10 seconds");
+        mItem_Timer2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mItem_Timer2ActionPerformed(evt);
+            }
+        });
         mItem_Timer.add(mItem_Timer2);
 
         mItem_Timer3.setText("Set timer to 15 seconds");
+        mItem_Timer3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mItem_Timer3ActionPerformed(evt);
+            }
+        });
         mItem_Timer.add(mItem_Timer3);
 
         menu_Edit.add(mItem_Timer);
@@ -120,6 +174,7 @@ public class App extends javax.swing.JFrame implements MouseMotionListener {
         // select image
         if (sel_Image == JFileChooser.APPROVE_OPTION) {
             try {
+                success = 1;
                 File selectedFile = fileChooser.getSelectedFile() ;
                 // apply image
                 BufferedImage originalImage = ImageIO.read(selectedFile);
@@ -130,9 +185,11 @@ public class App extends javax.swing.JFrame implements MouseMotionListener {
                 BufferedImage croppedImage = originalImage.getSubimage(x, y, width, height);
                 ImageIcon icon = new ImageIcon(croppedImage);
                 JLabel background = new JLabel(icon);
-                setContentPane(background);
+                bg = background;
+                setContentPane(bg);
                 revalidate();
                 repaint();
+                TimerStart();
             } catch (IOException ex) {
                 Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -147,7 +204,93 @@ public class App extends javax.swing.JFrame implements MouseMotionListener {
         
     }//GEN-LAST:event_mItem_VersionActionPerformed
 
-    // check mouse
+    private void mItem_Timer1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItem_Timer1ActionPerformed
+        // TODO add your handling code here:
+        TimeValue = 5000;
+    }//GEN-LAST:event_mItem_Timer1ActionPerformed
+
+    private void mItem_Timer2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItem_Timer2ActionPerformed
+        // TODO add your handling code here:
+        TimeValue = 10000;
+    }//GEN-LAST:event_mItem_Timer2ActionPerformed
+
+    private void mItem_Timer3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItem_Timer3ActionPerformed
+        // TODO add your handling code here:
+        TimeValue = 15000;
+    }//GEN-LAST:event_mItem_Timer3ActionPerformed
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        // TODO add your handling code here:
+        stopper = 1;
+        update();
+    }//GEN-LAST:event_formMouseClicked
+
+    private void formMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseEntered
+        // TODO add your handling code here:
+        stopper = 1;
+        update();
+    }//GEN-LAST:event_formMouseEntered
+
+    private void formMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseExited
+        // TODO add your handling code here:
+        stopper = 1;
+        update();
+    }//GEN-LAST:event_formMouseExited
+
+    private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
+        // TODO add your handling code here:
+        stopper = 1;
+        update();
+    }//GEN-LAST:event_formMousePressed
+
+    private void formMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseReleased
+        // TODO add your handling code here:
+        stopper = 1;
+        update();
+    }//GEN-LAST:event_formMouseReleased
+
+    private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
+        // TODO add your handling code here:
+        stopper = 1;
+        update();
+    }//GEN-LAST:event_formMouseDragged
+
+    private void formMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseMoved
+        // TODO add your handling code here:
+        stopper = 1;
+        update();
+    }//GEN-LAST:event_formMouseMoved
+
+    private void formMouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_formMouseWheelMoved
+        // TODO add your handling code here:
+        stopper = 1;
+        update();
+    }//GEN-LAST:event_formMouseWheelMoved
+
+    public void TimerStart() {
+        if (success == 1) {
+            timer.schedule(new TimerTask(){
+                @Override
+                public void run() {
+                    bg.setVisible(true);
+                    setContentPane(bg);
+                    revalidate();
+                    repaint();
+                    timer.cancel();
+                }
+            }, TimeValue);
+        }
+    }
+    
+    private void update() {
+        if (stopper == 1 & success == 1) {
+            timer.cancel();
+            timer.purge();
+            bg.setVisible(false);
+            stopper = 0;
+            TimerStart();
+        }
+    }
     
     /**
      * @param args the command line arguments
