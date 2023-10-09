@@ -267,7 +267,7 @@ public class App extends javax.swing.JFrame implements MouseMotionListener {
         update();
     }//GEN-LAST:event_formMouseWheelMoved
 
-    public void TimerStart() {
+    private void TimerStart() {
         if (success == 1) {
             timer.schedule(new TimerTask(){
                 @Override
