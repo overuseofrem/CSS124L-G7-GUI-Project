@@ -12,14 +12,14 @@ import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 
-public class ScreenSaver extends JFrame implements MouseListener {
+public class ScreenSaver extends JFrame implements MouseListener, MouseMotionListener {
     private JLabel label;
     private Timer timer;
 
     public ScreenSaver() {
         super("Screen Saver");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(400, 400);
+        setSize(1000, 800);
         setLocationRelativeTo(null);
 
         label = new JLabel();
@@ -34,6 +34,7 @@ public class ScreenSaver extends JFrame implements MouseListener {
         timer.setRepeats(false);
 
         addMouseListener(this);
+        addMouseMotionListener(this);
 
         JMenuBar menuBar = new JMenuBar();
         setJMenuBar(menuBar);
@@ -51,6 +52,7 @@ public class ScreenSaver extends JFrame implements MouseListener {
                 JOptionPane.showMessageDialog(null, "Screen Saver v1049304.01");
             }
         });
+        aboutMenu.add(aboutAppItem);
 
         JMenuItem editImageItem = new JMenuItem("Edit Image");
         editImageItem.addActionListener(new ActionListener() {
@@ -155,6 +157,18 @@ public class ScreenSaver extends JFrame implements MouseListener {
     public static void main(String[] args) {
         ScreenSaver screenSaver = new ScreenSaver();
         screenSaver.setVisible(true);
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+        label.setVisible(false);
+        timer.restart();
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
+        label.setVisible(false);
+        timer.restart();
     }
 
 }
