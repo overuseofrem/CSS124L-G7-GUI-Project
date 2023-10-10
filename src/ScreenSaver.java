@@ -19,7 +19,7 @@ public class ScreenSaver extends JFrame implements MouseListener, MouseMotionLis
     public ScreenSaver() {
         super("Screen Saver");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(400, 400);
+        setSize(1000, 800);
         setLocationRelativeTo(null);
 
         label = new JLabel();
