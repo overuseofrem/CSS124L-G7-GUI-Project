@@ -52,6 +52,7 @@ public class ScreenSaver extends JFrame implements MouseListener, MouseMotionLis
                 JOptionPane.showMessageDialog(null, "Screen Saver v1049304.01");
             }
         });
+        aboutMenu.add(aboutAppItem);
 
         JMenuItem editImageItem = new JMenuItem("Edit Image");
         editImageItem.addActionListener(new ActionListener() {
